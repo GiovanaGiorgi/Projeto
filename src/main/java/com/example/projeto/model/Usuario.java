@@ -23,10 +23,12 @@ public class Usuario implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
 
-    @Column
+    @Column(name = "Email")
     public String email;
 
-    @Column
+    @Column(name = "Senha")
     public String senha;
 
+    public Usuario(String email, String senha) {
+    }
 }
