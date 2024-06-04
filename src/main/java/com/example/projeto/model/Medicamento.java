@@ -2,6 +2,8 @@ package com.example.projeto.model;
 
 import jakarta.persistence.*;
 
+@Entity
+@Table(name = "MEDICAMENTO")
 public class Medicamento {
 
     @Id
@@ -15,13 +17,7 @@ public class Medicamento {
     public String Dosagem;
 
     @Column
-    public String Quantidade;
-
-    @Column
     public String ViaAdm;
-
-    @Column
-    public String Obs;
 
 
 }

@@ -17,7 +17,7 @@ import java.util.Objects;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Usuario implements Serializable {
+public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,6 +28,14 @@ public class Usuario implements Serializable {
 
     @Column(name = "Senha")
     public String senha;
+
+    @ManyToOne
+    @JoinColumn(name = "IdFarmacia")
+    private Farmacia farmacia;
+
+    @ManyToOne
+    @JoinColumn(name = "IdMedico")
+    private Medico medico;
 
     public Usuario(String email, String senha) {
     }

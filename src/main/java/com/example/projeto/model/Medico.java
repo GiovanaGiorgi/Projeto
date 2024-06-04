@@ -8,7 +8,7 @@ import lombok.Setter;
 
 @Entity
 @Table(name = "MEDICO")
-public class Medico extends Usuario {
+public class Medico {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,13 +18,7 @@ public class Medico extends Usuario {
     public String Nome;
 
     @Column
-    public int CRM;
-    //assinatura digital??
-
-    public Medico(String email, String senha){
-        super(email, senha);
-    }
-
+    public int crm;
 
     public Medico() {
 
