@@ -11,7 +11,7 @@ public class MedicamentoXReceita {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int Id;
 
     @ManyToMany
     @JoinColumn(name = "IdMedicamento")
@@ -23,5 +23,27 @@ public class MedicamentoXReceita {
     @Column
     public String Obs;
 
+    public int getId() {
+        return Id;
+    }
 
+    public void setId(int id) {
+        this.Id = id;
+    }
+
+    public String getQuantidade() {
+        return Quantidade;
+    }
+
+    public void setQuantidade(String quantidade) {
+        Quantidade = quantidade;
+    }
+
+    public String getObs() {
+        return Obs;
+    }
+
+    public void setObs(String obs) {
+        Obs = obs;
+    }
 }

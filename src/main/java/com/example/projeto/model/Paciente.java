@@ -16,9 +16,41 @@ public class Paciente {
     private Long Id;
 
     @Column
-    public String nome;
+    public String Nome;
     @Column
-    public String cpf;
+    public String Cpf;
     @Column
-    public Date nascimento;
+    public Date Nascimento;
+
+    public Long getIdPaciente() {
+        return Id;
+    }
+
+    public void setIdPaciente(Long id) {
+        Id = id;
+    }
+
+    public String getNomePaciente() {
+        return Nome;
+    }
+
+    public void setNomePaciente(String nome) {
+        Nome = nome;
+    }
+
+    public String getCpf() {
+        return Cpf;
+    }
+
+    public void setCpf(String cpf) {
+        Cpf = cpf;
+    }
+
+    public Date getNascimento() {
+        return Nascimento;
+    }
+
+    public void setNascimento(Date nascimento) {
+        Nascimento = nascimento;
+    }
 }

@@ -22,5 +22,11 @@ public class Receita {
     public MedicamentoXReceita medicamentoXReceita;
 
 
+    public Long getIdReceita() {
+        return id;
+    }
 
+    public void setIdReceita(Long id) {
+        this.id = id;
+    }
 }
