@@ -15,17 +15,15 @@ public class MedicamentoService implements IMedicamentoService {
      private MedicamentoRepository medicamentoRepository;
 
     @Override
-    public void cadastrarMedicamento(Medicamento medicamento) {
-        if((medicamento.getNomeMedicamento() == null) || medicamento.getNomeMedicamento().isEmpty()){
-            return;
-        }
-        if ((medicamento.getDosagem() == null || medicamento.getDosagem().isEmpty())) {
-            return;
-        }
-        if ((medicamento.getViaAdm() == null) || medicamento.getViaAdm().isEmpty()) {
-            return;
-        }
+    public Medicamento buscarPorId(int id) {
+        return medicamentoRepository.findById(id).orElseThrow(() -> new RuntimeException("Medicamento não encontrado."));
+    }
 
+    @Override
+    public void cadastrarMedicamento(Medicamento medicamento) {
+        if(medicamento.getNomeMedicamento() == null || medicamento.getDosagem() == null || medicamento.getViaAdm() == null){
+            throw new IllegalArgumentException("Informe todos os dados necessários.");
+        }
         medicamentoRepository.save(medicamento);
     }
     @Override
@@ -35,7 +33,7 @@ public class MedicamentoService implements IMedicamentoService {
     @Override
     public void alterarMedicamento(Medicamento medicamento) {
         if(medicamento.getNomeMedicamento() == null){
-            return;
+            throw new IllegalArgumentException("Informe o campo necessário.");
         }
         medicamentoRepository.save(medicamento);
     }
@@ -43,7 +41,7 @@ public class MedicamentoService implements IMedicamentoService {
     @Override
     public void excluirMedicamento(int id) {
         if(id <= 0){
-            return;
+            throw new IllegalArgumentException("Valor inválido.");
         }
 
         medicamentoRepository.deleteById(id);

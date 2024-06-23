@@ -22,17 +22,19 @@ public class ReceitaService implements IReceitaService {
     }
 
     @Override
-    public void cadastrarReceita(Receita receita) {
-        if((receita.getIdReceita() == null) || (receita.getIdReceita().isEmpty())){
-            return;
+    public Receita cadastrarReceita(Receita receita) {
+        if(receita.getMedico() == null || receita.getObs() == null || receita.getValidade() == null ||
+        receita.getPaciente() == null || receita.getMedicamento() == null || receita.getQuantidade() == null ) {
+            throw new IllegalArgumentException("Informe todos os dados necessários.");
         }
         receitaRepository.save(receita);
+        return receita;
     }
 
     @Override
     public void excluirReceita(int id) {
         if(id <= 0){
-            return;
+            throw new IllegalArgumentException("Valor inválido.");
         }
         receitaRepository.deleteById(id);
     }
@@ -40,7 +42,7 @@ public class ReceitaService implements IReceitaService {
     @Override
     public void alterarReceita(Receita receita) {
         if (receita.getIdReceita() == null){
-            return;
+            throw new IllegalArgumentException("Informe o campo necessário.");
         }
         receitaRepository.save(receita);
     }

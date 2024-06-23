@@ -29,6 +29,8 @@ public class Usuario {
     @Column(name = "Senha")
     public String senha;
 
+    @Getter
+    @Setter
     @ManyToOne
     @JoinColumn(name = "TipoUsuario")
     public TipoUsuario tipoUsuario;
@@ -41,7 +43,4 @@ public class Usuario {
         Id = id;
     }
 
-    public TipoUsuario getTipoUsuario() {
-        return tipoUsuario;
-    }
 }

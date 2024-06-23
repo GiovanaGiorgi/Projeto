@@ -1,22 +1,28 @@
 package com.example.projeto.model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Objects;
 
 @Entity
 @Table(name = "FARMACIA")
-public class Farmacia {
+public class Farmacia extends Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
 
+    @Getter
+    @Setter
     @Column
-    public String Cnpj;
+    private String Cnpj;
 
+    @Getter
+    @Setter
     @Column
-    public String Nome;
+    private String Nome;
 
 
     public Long getId() {
@@ -27,33 +33,17 @@ public class Farmacia {
         Id = id;
     }
 
-    public String getCnpj() {
-        return Cnpj;
-    }
-
-    public void setCnpj(String cnpj) {
-        this.Cnpj = cnpj;
-    }
-
-    public String getNome() {
-        return Nome;
-    }
-
-    public void setNome(String nome) {
-        this.Nome = nome;
-    }
-
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (o == null || getClass()!= o.getClass()) return false;
         Farmacia farmacia = (Farmacia) o;
-        return Cnpj == farmacia.Cnpj && Objects.equals(Id, farmacia.Id) && Objects.equals(Nome, farmacia.Nome);
+        return Cnpj == farmacia.Cnpj && Objects.equals(Id, farmacia.Id) && Objects.equals(Nome, farmacia.Nome) &&
+                Objects.equals(email, farmacia.email) && Objects.equals(senha, farmacia.senha);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(Id, Nome, Cnpj);
+        return Objects.hash(Id, Nome, Cnpj, email, senha);
     }
 }

@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface IPacienteService {
 
+    public Paciente buscarPorId(int id);
+
     public void cadastrarPaciente(Paciente paciente);
 
     List<Paciente> ListarPaciente();

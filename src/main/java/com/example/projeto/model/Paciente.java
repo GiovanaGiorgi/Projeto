@@ -4,6 +4,7 @@ package com.example.projeto.model;
 import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.Objects;
 
 //classe de "transição" - vai conter as informações de paciente e só, não é um ususário que vai ter ações.
 //o médico pode cadastrar um paciente antes de criar uma receita. o mesmo vale para a classe de medicamento
@@ -53,4 +54,21 @@ public class Paciente {
     public void setNascimento(Date nascimento) {
         Nascimento = nascimento;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass()!= o.getClass()) return false;
+        Paciente paciente = (Paciente) o;
+        return Objects.equals(Id, paciente.Id) &&
+                Objects.equals(Cpf, paciente.Cpf) &&
+                Objects.equals(Nascimento, paciente.Nascimento) &&
+                Objects.equals(Nome, paciente.Nome);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(Id, Cpf, Nascimento, Nome);
+    }
+
 }

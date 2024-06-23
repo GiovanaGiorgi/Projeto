@@ -5,6 +5,9 @@ import com.example.projeto.model.Medicamento;
 import java.util.List;
 
 public interface IMedicamentoService {
+
+    public Medicamento buscarPorId(int id);
+
     public void cadastrarMedicamento(Medicamento medicamento);
     public void alterarMedicamento(Medicamento medicamento);
     public void excluirMedicamento(int id);

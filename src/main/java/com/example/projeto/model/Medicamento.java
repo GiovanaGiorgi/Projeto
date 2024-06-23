@@ -2,6 +2,11 @@ package com.example.projeto.model;
 
 import jakarta.persistence.*;
 
+import java.util.Objects;
+import java.util.Set;
+
+import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
+
 @Entity
 @Table(name = "MEDICAMENTO")
 public class Medicamento {
@@ -18,6 +23,10 @@ public class Medicamento {
 
     @Column
     public String ViaAdm;
+
+    @ManyToMany(mappedBy = "medicamentos")
+    public Set<Receita> receita;
+
 
     public long getIdMedicamento() {
         return Id;
@@ -50,4 +59,21 @@ public class Medicamento {
     public void setViaAdm(String viaAdm) {
         ViaAdm = viaAdm;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass()!= o.getClass()) return false;
+        Medicamento medicamento = (Medicamento) o;
+        return Objects.equals(Id, medicamento.Id) &&
+                Objects.equals(Dosagem, medicamento.Dosagem) &&
+                Objects.equals(Nome, medicamento.Nome) &&
+                Objects.equals(ViaAdm, medicamento.ViaAdm);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(Id, Dosagem, Nome, ViaAdm);
+    }
+
 }

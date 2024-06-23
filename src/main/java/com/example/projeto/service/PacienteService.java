@@ -1,6 +1,5 @@
 package com.example.projeto.service;
 
-import com.example.projeto.model.Medico;
 import com.example.projeto.model.Paciente;
 import com.example.projeto.repository.PacienteRepository;
 import com.example.projeto.service.inter.IPacienteService;
@@ -14,16 +13,16 @@ public class PacienteService implements IPacienteService {
         @Autowired
         private PacienteRepository pacienteRepository;
 
-        @Override
+
+    @Override
+    public Paciente buscarPorId(int id) {
+        return pacienteRepository.findById(id).orElseThrow(() -> new RuntimeException("Paciente não encontrado."));
+    }
+
+    @Override
         public void cadastrarPaciente (Paciente paciente) {
-            if((paciente.getNomePaciente() == null) || paciente.getNomePaciente().isEmpty()){
-                return;
-            }
-            if ((paciente.getCpf() == null )|| paciente.getCpf().isEmpty()){
-            return;
-            }
-            if (paciente.getNascimento() == null){
-                return;
+            if(paciente.getNomePaciente() == null || paciente.getNascimento() == null || paciente.getCpf() == null){
+                throw new IllegalArgumentException("Informe todos os dados necessários.");
             }
             pacienteRepository.save(paciente);
         }
@@ -37,7 +36,7 @@ public class PacienteService implements IPacienteService {
         @Override
         public void excluirPaciente(int id) {
             if(id <= 0){
-                return;
+                throw new IllegalArgumentException("Valor inválido.");
             }
 
             pacienteRepository.deleteById(id);
@@ -46,7 +45,7 @@ public class PacienteService implements IPacienteService {
         @Override
         public void alterarPaciente (Paciente paciente) {
             if(paciente.getIdPaciente() == null){
-                return;
+                throw new IllegalArgumentException("Informe o campo necessário.");
             }
             pacienteRepository.save(paciente);
         }
