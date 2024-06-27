@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Farmed</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background-color: lightgreen;
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      font-size: 16px;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h1, h2 {
+      font-size: 24px;
+      color: #007bff;
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    input, textarea {
+      width: calc(100% - 22px);
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container" id="paginadeLogin">
+    <h1>Farmed</h1>
+    <form id="loginForm" onsubmit="return false;">
+      <label for="usuario">Usuário:</label>
+      <input type="text" id="usuario" name="usuario" required>
+      <label for="senha">Senha:</label>
+      <input type="password" id="senha" name="senha" required>
+      <button type="button" onclick="showPaginaDeReceita()">Entrar</button>
+    </form>
+  </div>
+
+  <div class="container" id="paginadeReceita" style="display: none;">
+    <h1>Criar Nova Receita Eletrônica</h1>
+    <form id="receitaForm" onsubmit="return false;"> 
+      <h2>Dados do Paciente</h2>
+      <label for="nome">Nome Completo:</label>
+      <input type="text" id="nome" name="nome" required>
+      <label for="dataNasc">Data de Nascimento:</label>
+      <input type="date" id="dataNasc" name="dataNasc" required>
+      <label for="documento">CPF:</label>
+      <input type="text" id="documento" name="documento" required>
+      <h2>Dados do Médico</h2>
+      <label for="nomeMedico">Nome Completo:</label>
+      <input type="text" id="nomeMedico" name="nomeMedico" required>
+      <label for="medicoCRM">CRM:</label>
+      <input type="text" id="medicoCRM" name="medicoCRM" required>
+      <label for="assinaturaMedico">Assinatura Digital:</label>
+      <input type="text" id="assinaturaMedico" name="assinaturaMedico" required>
+      <h2>Dados dos Medicamentos</h2>
+      <label for="medicamento">Nome do Medicamento:</label>
+      <input type="text" id="medicamento" name="medicamento" required>
+      <label for="medicamentoDosagem">Dosagem:</label>
+      <input type="text" id="medicamentoDosagem" name="medicamentoDosagem" required>
+      <label for="medicamentoQuantidade">Quantidade:</label>
+      <input type="text" id="medicamentoQuantidade" name="medicamentoQuantidade" required>
+      <label for="viaAdmin">Via de Administração:</label>
+      <input type="text" id="viaAdmin" name="viaAdmin" required>
+      <label for="dataVal">Data de Validade:</label>
+      <input type="date" id="dataVal" name="dataVal" required>
+      <label for="detalhesMedicacao">Observações:</label>
+      <textarea id="detalhesMedicacao" name="detalhesMedicacao"></textarea>
+      <button type onclick="showPaginaDeSucesso()">Enviar Receita</button>
+    </form>
+  </div>
+  
+  <div class="container" id="paginaDeSucesso" style="display: none;">
+    <h1>Receita Enviada Com Sucesso!</h1>
+  </div>
+
+  <script>
+    function showPaginaDeReceita() {
+      document.getElementById('paginadeLogin').style.display = 'none';
+      document.getElementById('paginadeReceita').style.display = 'block';
+    }
+    function showPaginaDeSucesso() {
+      document.getElementById('paginadeReceita').style.display = 'none';
+      document.getElementById('paginaDeSucesso').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
