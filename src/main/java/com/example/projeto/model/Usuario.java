@@ -6,10 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.io.Serializable;
-import java.util.List;
-import java.util.Objects;
-
 @Entity
 @Table(name = "USUARIO")
 @Getter
@@ -23,20 +19,28 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
 
+    @Getter
+    @Setter
     @Column(name = "Email")
     public String email;
 
+    @Getter
+    @Setter
     @Column(name = "Senha")
     public String senha;
 
+    @Getter
+    @Setter
     @ManyToOne
-    @JoinColumn(name = "IdFarmacia")
-    private Farmacia farmacia;
+    @JoinColumn(name = "TipoUsuario")
+    public TipoUsuario tipoUsuario;
 
-    @ManyToOne
-    @JoinColumn(name = "IdMedico")
-    private Medico medico;
-
-    public Usuario(String email, String senha) {
+    public Long getIdUsuario() {
+        return Id;
     }
+
+    public void setIdUsuario(Long id) {
+        Id = id;
+    }
+
 }
